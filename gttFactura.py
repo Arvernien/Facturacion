@@ -34,7 +34,7 @@ class frmTI(QWidget, Ui_frmTI):
 
     def getTI(self):
         path = os.getcwd() + "/profiles/tipos.accdb"
-        print "mierda"
+        # Esperate a ver si la vamos a liar.
         conn_str = (
             r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'
             r'DBQ=' + path + ';'
