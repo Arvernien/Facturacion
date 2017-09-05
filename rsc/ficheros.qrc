@@ -1,0 +1,15 @@
+<RCC>
+  <qresource prefix="img">
+    <file alias="x">red x.png</file>
+    <file>pencil.png</file>
+    <file>norecogido.png</file>
+    <file>recogido.png</file>
+    <file>desplegado.png</file>
+    <file>loading.gif</file>
+    <file>23-512.png</file>
+    <file>nodesplegado.png</file>
+    <file>carpeta.png</file>
+    <file>bar-chart-up-3.png</file>
+    <file>calculator-solid.png</file>
+  </qresource>
+</RCC>

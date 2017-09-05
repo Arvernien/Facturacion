@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1098</width>
+    <height>763</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Facturación catastro</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../rsc/ficheros.qrc">
+    <normaloff>:/img/calculator-solid.png</normaloff>:/img/calculator-solid.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">QWidget#centralwidget {
+	background: white;
+}
+QPushButton {
+	border: 1px solid rgb(143, 212, 0);
+	border-radius: 3px;
+	background: white;
+}
+QPushButton:hover {
+	background: qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0.5, stop:0 rgba(143, 212, 0, 100), stop:1 rgba(255, 255, 255, 255));
+}
+QMenu {
+    background-color: #ABABAB; /* sets background of the menu */
+    border: 1px solid black;
+}
+
+QTableWidget {
+	border: 1px solid grey;
+	color: black;
+    selection-background-color: rgba(143, 212, 0, 100);
+	selection-color: black;
+}
+QTableWidget QHeaderView::section {
+    background: white;
+	border: 1px outset rgb(143,212,0);
+
+}
+QTableWidget QHeaderView::section:checked
+{
+    background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0.5, stop:0 rgba(143, 212, 0, 100), stop:1 rgba(255, 255, 255, 255));
+}
+QTableWidget QHeaderView::down-arrow {
+	height: 5px;
+	width: 5px;
+    image: url(:/img/desplegado.png);
+}
+
+QTableWidget QHeaderView::up-arrow {
+	image: url(:/img/nodesplegado.png);
+}
+QTableWidget QTableCornerButton::section {
+    background: white;
+	border: 1px outset rgb(143,212,0);
+}</string>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QWidget" name="widget" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>30</height>
+       </size>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QPushButton" name="but_open">
+         <property name="minimumSize">
+          <size>
+           <width>30</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>30</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="toolTip">
+          <string>Abrir excel para facturación</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../rsc/ficheros.qrc">
+           <normaloff>:/img/carpeta.png</normaloff>:/img/carpeta.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_3">
+         <property name="minimumSize">
+          <size>
+           <width>30</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>30</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="toolTip">
+          <string>Aplicar perfil seleccionado</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../rsc/ficheros.qrc">
+           <normaloff>:/img/23-512.png</normaloff>:/img/23-512.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="Line" name="line">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="but_Calcular">
+         <property name="minimumSize">
+          <size>
+           <width>30</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>30</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="toolTip">
+          <string>Calcular</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../rsc/ficheros.qrc">
+           <normaloff>:/img/calculator-solid.png</normaloff>:/img/calculator-solid.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="but_TI">
+         <property name="minimumSize">
+          <size>
+           <width>30</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>30</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="toolTip">
+          <string>Ver tipos impositivos</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../rsc/ficheros.qrc">
+           <normaloff>:/img/bar-chart-up-3.png</normaloff>:/img/bar-chart-up-3.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QTabWidget::pane {
+	border-top: 1px solid rgb(143,212,0);
+}
+QTabBar::tab {
+	border: 1px solid rgb(143,212,0);
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	background: rgb(200,200,200);
+	padding-left: 5px;
+	width:50;
+}
+QTabBar::tab:hover{
+	border: 1px solid rgb(143,212,0);
+	background: white;
+	height: 27px;
+}
+QTabBar::tab:selected{
+	border: 1px solid rgb(143,212,0);
+	background: white;
+	height: 27px;
+}
+QTabBar::tab:!selected{
+	border: 1px solid rgb(143,212,0);
+	margin-top: 2px;
+	height: 25px;
+}
+QTabBar::scroller{
+	height: 25px;
+	width:15px;
+}
+QTabBar QToolButton {
+	border: 1px solid rgb(143,212,0);
+	background-color: white;
+	height: 25px;	
+}
+QTabBar QToolButton::right-arrow {
+	image: url(:/img/recogido.png);
+}
+QTabBar QToolButton::left-arrow {
+	image: url(:/img/norecogido.png);
+}
+QWidget#tabSalida {
+	border: 1px solid rgb(143,212,0);
+}
+QWidget#tabEntrada {
+	border: 1px solid rgb(143,212,0);
+}
+
+QScrollBar:horizontal {
+    border-top: 1px solid grey;
+	border-right: 0px solid grey;
+	border-bottom: 0px;
+	border-left: 0px solid grey;
+    background: #D3D3D3;
+    height: 18px;
+    margin: 0px 22px 0px 22px;
+}
+QScrollBar::handle:horizontal {
+	border-top: 0px;
+	border-right: 1px solid grey;
+	border-bottom: 0px;
+	border-left: 1px solid grey;
+    background: white;
+    min-width: 20px;
+}
+QScrollBar::add-line:horizontal {
+	border-top: 1px solid grey;
+	border-bottom: 0px;
+	border-left: 1px solid grey;
+	border-right: 1px solid grey;
+    background: white;
+    width: 20px;
+    subcontrol-position: right;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::sub-line:horizontal {
+	border-top: 1px solid grey;
+	border-bottom: 0px;
+	border-right: 1px solid grey;
+    background:white;
+    width: 21px;
+    subcontrol-position: left;
+    subcontrol-origin: margin;
+}
+QScrollBar:left-arrow:horizontal {
+    width: 8px;
+    height: 8px;
+    background: white;
+	color: grey;
+	image: url(:/img/norecogido.png);
+}
+ QScrollBar::right-arrow:horizontal {
+    width: 8px;
+    height: 8px;
+    background: white;
+	color: grey;
+	image: url(:/img/recogido.png);
+}
+QScrollBar:vertical {
+    border-top: 0px solid grey;
+	border-right: 0px solid grey;
+	border-bottom: 0px;
+	border-left: 1px solid grey;
+    background:  #D3D3D3;
+    width: 18px;
+    margin: 22px 0px 22px 0px;
+}
+QScrollBar::handle:vertical {
+	border-top: 1px solid grey;
+	border-right: 0px solid grey;
+	border-bottom: 1px solid grey;
+	border-left: 0px solid grey;
+    background: white;
+    min-height: 20px;
+}
+QScrollBar::add-line:vertical {
+	border-top: 1px solid grey;
+	border-bottom: 1px solid grey;
+	border-left: 1px solid grey;
+	border-right: 0px solid grey;
+    background: white;
+    height: 20px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::sub-line:vertical {
+	border-top: 0px solid grey;
+	border-bottom: 1px solid grey;
+	border-left: 1px solid grey;
+    background:white;
+    height: 21px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+QScrollBar:up-arrow:vertical {
+    width: 8px;
+    height: 8px;
+    background: white;
+	color: grey;
+	image: url(:/img/nodesplegado.png);
+}
+ QScrollBar::down-arrow:vertical {
+    width: 8px;
+    height: 8px;
+    background: white;
+	color: grey;
+	image: url(:/img/desplegado.png);
+}</string>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tabEntrada">
+       <attribute name="title">
+        <string>Entrada</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QTableWidget" name="tabla">
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabSalida">
+       <attribute name="title">
+        <string>Cálculo</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <spacer name="horizontalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QLabel" name="label">
+              <property name="font">
+               <font>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Perfil:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="selectorPerfiles">
+              <property name="minimumSize">
+               <size>
+                <width>103</width>
+                <height>22</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QComboBox {
+    border: 2px solid rgb(143,212,0);
+    border-radius: 5px;
+    padding: 1px 18px 1px 3px;
+    min-width: 6em;
+	color: dark grey;
+	font-weight: bold;
+}
+QComboBox#selectorPerfiles:editable {
+    background: darkgrey;
+}
+
+QComboBox#selectorPerfiles:!editable, QComboBox::drop-down:editable {
+     background: white;
+	
+}
+
+QComboBox#selectorPerfiles:on { /* shift the text when the popup opens */
+	background: darkgrey;
+    padding-top: 3px;
+    padding-left: 4px;
+}
+
+QComboBox#selectorPerfiles::drop-down {
+	font-weight: light;
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-left-width: 1px;
+    border-left-color: rgb(143,212,0);
+    border-left-style: solid; /* just a single line */
+    border-top-right-radius: 3px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 3px;
+}
+
+QComboBox#selectorPerfiles::down-arrow {
+	image: url(:/img/desplegado.png);
+}</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QTableWidget" name="tabla_2">
+            <property name="sortingEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1098</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>20</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QMenuBar {
+    background-color:white;
+}
+
+QMenuBar::item {
+    spacing: 3px; /* spacing between menu bar items */
+    padding: 2px 4px;
+    background: transparent;
+    border-radius: 4px;
+}
+
+QMenuBar::item:selected { /* when selected using mouse or keyboard */
+    background: rgb(143,212,0);
+}
+
+QMenuBar::item:pressed {
+    background: #888888;
+}
+QMenu {
+    background-color: white; /* sets background of the menu */
+    border: 1px solid black;
+}
+
+
+QMenu::item {
+    /* sets background of menu item. set this to something non-transparent
+        if you want menu color and menu item color to be different */
+    background-color: white;
+}
+
+QMenu::item:selected { /* when user selects item using mouse or keyboard */
+	color: black;
+    background-color:  qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0.5, stop:0 rgba(143, 212, 0, 100), stop:1 rgba(255, 255, 255, 255));;
+}</string>
+   </property>
+   <widget class="QMenu" name="menuMen">
+    <property name="title">
+     <string>Archivo</string>
+    </property>
+    <addaction name="actionCargar_Excel_de_Facturaci_n"/>
+    <addaction name="actionImportar_datos_desde_FIN_de_Retorno"/>
+    <addaction name="actionImportar_Fichero_de_carga"/>
+    <addaction name="actionImportar_Access_Valores"/>
+   </widget>
+   <widget class="QMenu" name="menuExportar">
+    <property name="title">
+     <string>Exportar</string>
+    </property>
+    <addaction name="actionA_Excel_de_facturaci_n"/>
+    <addaction name="separator"/>
+    <addaction name="actionGenerar_Access_para_BET"/>
+   </widget>
+   <addaction name="menuMen"/>
+   <addaction name="menuExportar"/>
+  </widget>
+  <action name="actionAdministrar_perfiles">
+   <property name="text">
+    <string>Administrar perfiles</string>
+   </property>
+  </action>
+  <action name="actionCargar_Excel_de_Facturaci_n">
+   <property name="text">
+    <string>Cargar Excel de Facturación</string>
+   </property>
+  </action>
+  <action name="actionImportar_datos_desde_FIN_de_Retorno">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Importar FIN de Retorno</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="actionImportar_Fichero_de_carga">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Importar Fichero de carga</string>
+   </property>
+  </action>
+  <action name="actionA_Excel_de_facturaci_n">
+   <property name="text">
+    <string>A Excel de facturación</string>
+   </property>
+  </action>
+  <action name="actionGenerar_Access_para_BET">
+   <property name="text">
+    <string>Generar Access para BET</string>
+   </property>
+   <property name="visible">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionImportar_Access_Valores">
+   <property name="text">
+    <string>Importar Access Valores</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="../rsc/ficheros.qrc"/>
+ </resources>
+ <connections/>
+</ui>
