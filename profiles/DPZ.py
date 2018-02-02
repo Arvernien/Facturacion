@@ -14,9 +14,9 @@ import os
 
 # ---------------------------------- PARÁMETROS -------------------------------------------------------------
 #       Modificar estos valores de ser necesario:
-iva = 0.21
-min = 35.56
-
+iva = 1.21
+min = 25.00
+porcentaje = 0.08869  # Formato decimal.
 # ---------------------------------- PARÁMETROS -------------------------------------------------------------
 
 try:
@@ -35,7 +35,7 @@ class clase(QWidget):
         self.tabla = tabla
         self.cab = cab
         self.row = row
-        self.cb.addItems(['LIQ', 'NLIQ', 'INC'])
+        self.cb.addItems(['LIQ', 'NLIQ', 'INC', 'AFEC'])
         self.lyt.setAlignment(Qt.AlignHCenter)
         self.lyt.addWidget(self.cb)
         self.lyt.setContentsMargins(5, 0, 5, 0)
@@ -88,11 +88,12 @@ class clase(QWidget):
 
 
 def confTabla(form):
+    str_porcentaje = str(porcentaje * 100)
     form.tabla_2.clear()
     form.tabla_2.setRowCount(0)
     cabeceras = [u'CLASE', u'COD MUNI', u'MUNICIPIO', u'REF CATASTRAL', u'NUM FIJO', u'OBJETO TRIBUTARIO', u'ID_VALOR',
                  u'OTROS VALORES', u'PERIODO', u'VALOR CAT', u'BASE LIQ', u'Tipo', u'DEUDA LIQ', u'IMP PADRON 2016',
-                 u'17.185% CUOTA', u'FACTURACION CON IVA', u'FACTURACION SIN IVA', u'SUJETO PASIVO', u'NIF',
+                 str_porcentaje + u'% CUOTA', u'FACTURACION CON IVA', u'FACTURACION SIN IVA', u'SUJETO PASIVO', u'NIF',
                  u'Nº EXP GERENCIA', u'TIPO EXP', u'OBSERVACIONES']
 
 
@@ -106,6 +107,8 @@ def confTabla(form):
             id_subo = form.tabla.item(i, 4).text()
             if form.tabla.item(i, 11).text() == u'GRÁFICO':
                 obs = u'AJUSTE GRÁFICO'
+            elif form.tabla.item(i, 11).text() == u'AFECTADA':
+                obs = u'FINCA AFECTADA'
             else:
                 obs = ""
             objtributario = form.tabla.item(i, 15).text()
@@ -117,6 +120,7 @@ def confTabla(form):
                     '%Y')
             else:
                 fentrega = ""
+            relacion = form.tabla.item(i, 11).text()
             print refcat, falteracion, fentrega
             for i in range(0, len(lcargos), 1):
                 QApplication.processEvents()
@@ -131,6 +135,8 @@ def confTabla(form):
                     elif int(fentrega) > int(falteracion):
                         print "idx:1"
                         cl.cb.setCurrentIndex(1)
+                if relacion == u'AFECTADA':
+                    cl.cb.setCurrentIndex(3)
                 form.tabla_2.setCellWidget(row, 0, cl)
                 form.tabla_2.setItem(row, 1, QTableWidgetItem(id_subo[-3:]))
                 form.tabla_2.setItem(row, 2, QTableWidgetItem(municipio))
@@ -161,6 +167,8 @@ def colorea(tabla, row, cab, idx):
         color = QColor(qRgb(194, 255, 220))
     elif idx == 0:
         color = QColor(qRgb(173, 216, 230))
+    elif idx == 3:
+        color = QColor(qRgb(173, 216, 179))
     for a in range(cab):
         if tabla.item(row, a) is not None:
             tabla.item(row, a).setBackground(color)
@@ -188,17 +196,20 @@ def calcular(form):
         QApplication.processEvents()
         if form.tabla_2.item(i, 6) is None or (
                         form.tabla_2.item(i, 6) is not None and form.tabla_2.item(i, 6).text() == ""):
+
             if form.tabla_2.item(i, 11).text() != "MANUAL":
                 print form.tabla_2.item(i, 3).text()
                 bliq = float(form.tabla_2.item(i, 10).text())
                 tipo = float(form.tabla_2.item(i, 11).text())
                 pad = round(bliq * tipo / 100, 2)
-                cuota = round(pad * 0.17185, 2)
+                cuota = round(pad * porcentaje, 2)
                 if cuota < min:
                     fact = min
                 else:
                     fact = cuota
-                factiva = round(fact * 1.21, 2)
+                if form.tabla_2.cellWidget(i, 0).idx() == 3:
+                    fact = min
+                factiva = round(fact * iva, 2)
                 form.tabla_2.setItem(i, 13, QTableWidgetItem(str(pad)))
                 form.tabla_2.setItem(i, 14, QTableWidgetItem(str(cuota)))
                 form.tabla_2.setItem(i, 15, QTableWidgetItem(str(factiva)))
@@ -206,12 +217,12 @@ def calcular(form):
                 colorea(form.tabla_2, i, len(form.tabla_2.horizontalHeader()), form.tabla_2.cellWidget(i, 0).idx())
         else:
             liq = float(form.tabla_2.item(i, 12).text())
-            cuota = round(liq * 0.17185, 2)
+            cuota = round(liq * porcentaje, 2)
             if cuota < min:
                 fact = min
             else:
                 fact = cuota
-            factiva = round(fact * 1.21, 2)
+            factiva = round(fact * iva, 2)
             form.tabla_2.setItem(i, 14, QTableWidgetItem(str(cuota)))
             form.tabla_2.setItem(i, 15, QTableWidgetItem(str(factiva)))
             form.tabla_2.setItem(i, 16, QTableWidgetItem(str(fact)))
@@ -472,7 +483,7 @@ def exportar(form):
         fuente = Font(name='Calibri', size=10)
         contador = 1
         for fila in range(form.tabla_2.rowCount()):
-            if form.tabla_2.cellWidget(fila, 0).idx() == 1:
+            if form.tabla_2.cellWidget(fila, 0).idx() == 1 or form.tabla_2.cellWidget(fila, 0).idx() == 3:
                 contador += 1
 
                 fondoverde = PatternFill(fill_type='solid', start_color='E2EFDA', end_color='E2EFDA')

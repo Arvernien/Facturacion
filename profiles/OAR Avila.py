@@ -11,9 +11,11 @@ import os
 # ---------------------------------- PARÁMETROS -------------------------------------------------------------
 #       Modificar estos valores de ser necesario:
 precio = 40
-iva = 0.21
+iva = 0.21  # 0.21 Ya que se calcula a nivel de facturación y no de registro.
 minoar = 51.00
 mingtt = 44.00
+porcentaje_oar = 0.25  # Formato decimal.
+porcentaje_gtt = 0.2050  # Formato decimal.
 # ---------------------------------- PARÁMETROS -------------------------------------------------------------
 
 def confTabla(form):
@@ -94,8 +96,8 @@ def calcular(form):
                 bliq = float(form.tabla_2.item(i, 19).text())
                 tipo = float(form.tabla_2.item(i, 20).text())
                 pad = bliq * tipo / 100
-                padoar025 = pad * 0.25
-                pad2050gtt = pad * 0.205
+                padoar025 = pad * porcentaje_oar
+                pad2050gtt = pad * porcentaje_gtt
                 form.tabla_2.setItem(i, 0, QTableWidgetItem("3"))
                 form.tabla_2.setItem(i, 4, QTableWidgetItem("N"))
                 form.tabla_2.setItem(i, 16, QTableWidgetItem(str(time.strftime('%Y'))))
@@ -130,8 +132,8 @@ def calcular(form):
             tipo = float(form.tabla_2.item(i, 20).text())
             pad = bliq * tipo / 100
             liq = float(form.tabla_2.item(i, 21).text())
-            liqoar = liq * 0.25
-            liqgtt = liq * 0.2050
+            liqoar = liq * porcentaje_oar
+            liqgtt = liq * porcentaje_gtt
             form.tabla_2.setItem(i, 0, QTableWidgetItem("1"))
             form.tabla_2.setItem(i, 4, QTableWidgetItem("S"))
             form.tabla_2.setItem(i, 22, QTableWidgetItem(str(round(liqoar, 2))))

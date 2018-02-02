@@ -20,7 +20,7 @@ def confTabla(form):
     form.tabla_2.clear()
     form.tabla_2.setRowCount(0)
     y = date.today().year
-    cabeceras = [u'Ref. Catastral', u'Exp. Gerencia', u'Nº fijo', u'DIRECCIÓN OT', u'NIF', u'SUJETO PASIVO', u'Codigo Postal',
+    cabeceras = [u'Exp. Gerencia', u'Ref. Catastral', u'Nº fijo', u'DIRECCIÓN OT', u'NIF', u'SUJETO PASIVO', u'Codigo Postal',
                  u'Nom. Provincia',
                  u'Nom.Municipio', u'Clave Uso', u'IDVALOR', u'Periodo', u'Liquidac.1', u'Liquidac.2',
                  u'liquidac. A deducir',
@@ -52,8 +52,8 @@ def confTabla(form):
                 QApplication.processEvents()
                 row = form.tabla_2.rowCount()
                 form.tabla_2.setRowCount(form.tabla_2.rowCount() + 1)
-                form.tabla_2.setItem(row, 0, QTableWidgetItem(refcat + componeCargo(lcargos[i])))
-                form.tabla_2.setItem(row, 1, QTableWidgetItem(expger))
+                form.tabla_2.setItem(row, 1, QTableWidgetItem(refcat + componeCargo(lcargos[i])))
+                form.tabla_2.setItem(row, 0, QTableWidgetItem(expger))
                 form.tabla_2.setItem(row, 7, QTableWidgetItem("VALENCIA"))
                 form.tabla_2.setItem(row, 8, QTableWidgetItem(municipio))
 
@@ -283,7 +283,7 @@ def exportar(form):
             d.alignment = ag
             d.border = borde
             d.font = fuente
-        anchos = [('A', 21.42578125), ('B', 18.140625), ('C', 10.140625), ('D', 42.140625), ('E', 10.42578125),
+        anchos = [('A', 18.140625), ('B', 21.42578125), ('C', 10.140625), ('D', 42.140625), ('E', 10.42578125),
                   ('F', 46.85546875), ('G', 13.0), ('H', 14.42578125), ('I', 14.85546875), ('J', 9.7109375), ('K', 23.28515625),
                   ('L', 9.5703125), ('M', 9.85546875), ('N', 9.85546875), ('O', 17.85546875), ('P', 13.7109375),
                   ('Q', 7.85546875), ('R', 13.0), ('S', 12.140625), ('T', 19.0), ('U', 16.42578125),

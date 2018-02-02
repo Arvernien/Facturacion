@@ -101,7 +101,7 @@ def importaCarga(form):
         file = open(ruta, "r")
         for line in file:
             if line[98:108] == "Expediente":
-                expcarga = line[112:124]
+                expcarga = line[111:124]
             if line[9:10] == ".":
                 if line[8:9] != " ":
                     expger = line[1:15]

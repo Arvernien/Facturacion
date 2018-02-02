@@ -6,11 +6,11 @@ from openpyxl.styles import PatternFill, Border, Side, Alignment, Protection, Fo
 # ---------------------------------- PARÁMETROS -------------------------------------------------------------
 #       Modificar estos valores de ser necesario:
 iva = 1.21              # Porcentaje IVA.
-preciouu1 = 31.03       # Precio de 1 UU.
-preciouu2a10 = 25.86    # Precio de 2 a 10 UU.
-preciouu11a50 = 20.69   # Precio de 11 a 50 UU.
-preciouu51a100 = 15.52  # Precio de 51 a 100 UU.
-preciouu101 = 8.62      # Precio de más de 101 UU.
+preciouu1 = 30.83       # Precio de 1 UU.
+preciouu2a10 = 25.66    # Precio de 2 a 10 UU.
+preciouu11a50 = 20.49   # Precio de 11 a 50 UU.
+preciouu51a100 = 15.32  # Precio de 51 a 100 UU.
+preciouu101 = 8.42      # Precio de más de 101 UU.
 preciorecurso = 25.86   # Precio de UU en recurso.
 
 # ---------------------------------- PARÁMETROS -------------------------------------------------------------
