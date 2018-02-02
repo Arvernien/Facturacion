@@ -315,7 +315,7 @@ def exportar(form):
         a.fill = bg
         a.font = fuente
         a.border = borde
-        a = hj.cell(row=totalfilas + 6, column=13, value="=M" + str(totalfilas + 4) + "-M" + str(totalfilas + 3))
+        a = hj.cell(row=totalfilas + 6, column=13, value="=M" + str(totalfilas + 5) + "-M" + str(totalfilas + 4))
         a.fill = bg
         #a.font = fuente
         a.border = borde
@@ -411,6 +411,7 @@ def exportar(form):
 
         try:
             wb.save(unicode(ruta))
+            QMessageBox.information(form, "Guardado", u"Guardado correctamente")
         except IOError as e:
             if e.errno == 13:
                 QMessageBox.critical(form, "Error", u"El fichero de destino está en uso")
